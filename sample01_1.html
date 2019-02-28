@@ -29,25 +29,24 @@
 
   <script type="text/javascript">
     var total = 4800; // 合計金額
-    var a = new Array(3); // 配列を宣言 要素数:3
-    a[0] = 2000; // 金額:夜間証明
-    a[1] = 400; // 金額:バレーボール用ネット×2面
-    a[2] = 500; // 金額:バレーボール×10個
+    var addPrice = new Array(3); // 配列を宣言 要素数:3
+    addPrice[0] = 2000; // 夜間照明
+    addPrice[1] =  400; // バレーボール用ネット×2面
+    addPrice[2] =  500; // バレーボール×10個
 
     /**
-     * 
-     * チェックボックスによって合計金額に追加料金を加算
-     * @param i 追加料金のチェックボックス
+     * 合計金額にチェックされている項目の追加料金を加算
+     * @param checkedItems チェックされている項目
      */
-    function goukei(i) {
+    function goukei(checkedItems) {
       // チェックボックスがチェックされた場合
-      if (document.forms[0].elements[i].checked == true) {
+      if (document.forms[0].elements[checkedItems].checked == true) {
         // 合計から外れたチェックボックスの項目の金額を足す
-        total = total + a[i];
+        total = total + addPrice[checkedItems];
       // チェックボックスが外れた場合
       } else {
         // 合計から外れたチェックボックスの項目の金額を引く
-        total = total - a[i];
+        total = total - addPrice[checkedItems];
       }
     // 合計金額を表示するテキストボックスのvalueの値を上記で算出した合計金額に差し替える
     document.forms[0].elements[3].value = total;
@@ -66,6 +65,5 @@
     <br>
     合計金額<input type="text" size="6" value="4800">円
   </form>
-
 </body>
 </html>
