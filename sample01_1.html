@@ -1,0 +1,69 @@
+<!--
+演習問題1
+(1)P7〜p8の「Sample01_1.html」に示したHTMLファイルを作成してみましょう。
+(2)演習(1)で作成したHTMLファイルをWebブラウザに表示し、チェックボックスの操作に応じて合計金額が変化することを確認してみましょう。※メンター確認済
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>体育館の利用料金</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    h1 {
+      border-bottom: solid 3px #003399;
+      padding: 3px;
+      color: #003399;
+      width: 500px;
+    }
+
+    div.st1 {
+      font-size: 14px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+
+    form {
+      padding-left: 30px;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var total = 4800; // 合計金額
+    var addPrice = new Array(3); // 配列を宣言 要素数:3
+    addPrice[0] = 2000; // 夜間照明
+    addPrice[1] =  400; // バレーボール用ネット×2面
+    addPrice[2] =  500; // バレーボール×10個
+
+    /**
+     * 合計金額にチェックされている項目の追加料金を加算
+     * @param checkedItems チェックされている項目
+     */
+    function goukei(checkedItems) {
+      // チェックボックスがチェックされた場合
+      if (document.forms[0].elements[checkedItems].checked == true) {
+        // 合計から外れたチェックボックスの項目の金額を足す
+        total = total + addPrice[checkedItems];
+      // チェックボックスが外れた場合
+      } else {
+        // 合計から外れたチェックボックスの項目の金額を引く
+        total = total - addPrice[checkedItems];
+      }
+    // 合計金額を表示するテキストボックスのvalueの値を上記で算出した合計金額に差し替える
+    document.forms[0].elements[3].value = total;
+    }
+  </script>
+</head>
+<body>
+  <h1>体育館の利用料金</h1>
+  <div class="st1">
+    基本使用料（2面、4時間）4,800円
+  </div>
+  <form>
+    <input type="checkbox" onclick="goukei(0)">夜間証明（2,000円）<br>
+    <input type="checkbox" onclick="goukei(1)">バレーボール用ネット×2面（400円）<br>
+    <input type="checkbox" onclick="goukei(2)">バレーボール×10個（500円）<br>
+    <br>
+    合計金額<input type="text" size="6" value="4800">円
+  </form>
+</body>
+</html>
