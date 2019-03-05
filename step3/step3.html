@@ -1,0 +1,24 @@
+<!--
+演習(1) 以下のようなHTMLファイルを作成し、onclickイベントで関数「Photoinfo()」を実行してみましょう。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>関数の練習</title>
+  <meta charset="utf-8">
+</head>
+
+<script type="text/javascript">
+  /**
+ * 画像押下時、メッセージをアラートで表示
+ */
+  function PhotoInfo() {
+    alert('タヒチの写真です！');
+  }
+</script>
+
+<body>
+  <!-- 画像押下時,メッセージをアラートで表示するメソッドを呼び出す -->
+  <img src="tahiti01.jpg" onclick="PhotoInfo()">
+</body>
+</html>
