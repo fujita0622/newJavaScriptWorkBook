@@ -1,0 +1,91 @@
+<!--
+演習(1)配列[「a」と「b」を宣言し、ボタンのクリックによりa[0]*b[0]、a[1]*b[1]、a[2]*b[2]の演算結果を表示するホームページを作成してみましょう。
+仕様1：「kakezan()」「kakezan1()」「kakezan2()」という3つの関数を作成し、ボタンをクリックしたときに対応する関数が実行されるJavaScriptを記述します。
+仕様2：それぞれの関数では、変数「answer」に演算結果を代入し、alert()で計算結果を表示します。
+仕様3：配列「a」「b」および変数「answer」はグローバル変数とするため、関数の外で宣言を行います。
+仕様4：表の各セルの横幅は100pxとします。また、見出しセルの背景色は　#CCCCCCとします。（TD、THタグにCSSを指定します）。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>配列の演算</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    table {
+      border: 2px solid #000;
+    }
+    th, td {
+      width: 100px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+    th {
+      background-color: #CCCCCC;
+    }
+    td:first-child {
+      background-color: #CCCCCC;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var aArray = [5, 12, 18];  // aの配列
+    var bArray = [33, 14, 65]; // bの配列
+    var countResult; // 演算結果
+
+    /**
+     * 引数同士を掛け算し、結果をアラートで表示
+     * @param leftValue  左辺の値
+     * @param rightValue 右辺の値
+     */
+    function multiplicationSubscript(leftValue, rightValue) {
+      // 引数を掛け算し演算結果を格納
+      countResult = leftValue * rightValue;
+      // アラートで結果を表示
+      alert(countResult);
+    }
+    // aとbの配列の添字0の値同士を掛け算し、結果をアラートで表示
+    function multiplicationSubscript0(leftValue, rightValue) {
+      multiplicationSubscript(leftValue, rightValue);
+    }
+    // aとbの配列の添字1の値同士を掛け算し、結果をアラートで表示
+    function multiplicationSubscript1(leftValue, rightValue) {
+      multiplicationSubscript(leftValue, rightValue);
+    }
+    // aとbの配列の添字2の値同士を掛け算し、結果をアラートで表示
+    function multiplicationSubscript2(leftValue, rightValue) {
+      multiplicationSubscript(leftValue, rightValue);
+    }
+  </script>
+</head>
+<body>
+  <h1>配列の演算</h1>
+  <table>
+    <tr>
+      <th>添字</th>
+      <th>a</th>
+      <th>b</th>
+      <th>a*bを計算</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>5</td>
+      <td>33</td>
+      <!-- aとbの配列の添字0の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="multiplicationSubscript0(aArray[0], bArray[0])">計算結果</button></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>12</td>
+      <td>14</td>
+      <!-- aとbの配列の添字1の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="multiplicationSubscript1(aArray[1], bArray[1])">計算結果</button></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>18</td>
+      <td>65</td>
+      <!-- aとbの配列の添字2の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="multiplicationSubscript2(aArray[2], bArray[2])">計算結果</button></td>
+    </tr>
+  </table>
+</html>
