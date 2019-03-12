@@ -1,8 +1,8 @@
 <!--
 演習(1) 変数「a」と変数「b」の四則演算、ならびに余りを求めるホームページを作成してみましょう。
 仕様1：「tashizan()」「hikizan()」「kakezan()」「warizan()」「amari()」という5つの関数を作成し、ボタンをクリックした際に対応する関数が実行されるようにJavaScriptを記述します。
-仕様2：それぞれの関数では、変数「answer」に演算結果を代入し、alert()で答えを表示します。
-仕様3：変数「aValue」「bValue」「answer」はグローバル変数とするため、関数の外で変数の宣言を行います。
+仕様2：それぞれの関数では、変数「countAnswer」に演算結果を代入し、alert()で答えを表示します。
+仕様3：変数「aValue」「bValue」「countAnswer」はグローバル変数とするため、関数の外で変数の宣言を行います。
 -->
 <!DOCTYPE html>
 <html>
@@ -13,16 +13,18 @@
   <script type="text/javascript">
   var aValue = parseInt(10); // aの値 ※数値型に変換
   var bValue = parseInt(4);  // bの値 ※数値型に変換
-  var answer; // 演算結果
+  var countAnswer; // 演算結果
 
   /**
   * 引数を加算し,結果をアラートで画面に表示
   * @param aValue 左辺(a)の値
   * @param aValue 右辺(b)の値
   */
-  function tashizan(aValue, bValue) {
-    answer = aValue + bValue;
-    alert(answer + "です。");
+  function getAddResult(aValue, bValue) {
+    // 引数を加算
+    countAnswer = aValue + bValue;
+    // 結果をアラートで表示
+    alert(countAnswer + "です。");
   }
 
   /**
@@ -30,9 +32,11 @@
   * @param aValue 左辺(a)の値
   * @param aValue 右辺(b)の値
   */
-  function hikizan(aValue, bValue) {
-    answer = aValue - bValue;
-    alert(answer + "です。");
+  function getSubtractionResult(aValue, bValue) {
+    // 引数を減算
+    countAnswer = aValue - bValue;
+    // 結果をアラートで表示
+    alert(countAnswer + "です。");
   }
 
   /**
@@ -40,9 +44,11 @@
   * @param aValue 左辺(a)の値
   * @param aValue 右辺(b)の値
   */
-  function kakezan(aValue, bValue) {
-    answer = aValue * bValue;
-    alert(answer + "です。");
+  function getMultiplicationResult(aValue, bValue) {
+    // 引数を掛け算
+    countAnswer = aValue * bValue;
+    // 結果をアラートで表示
+    alert(countAnswer + "です。");
   }
 
   /**
@@ -50,9 +56,11 @@
   * @param aValue 左辺(a)の値
   * @param aValue 右辺(b)の値
   */
-  function warizan(aValue, bValue) {
-    answer = aValue / bValue;
-    alert(answer + "です。");
+  function getDivisionResult(aValue, bValue) {
+    // 引数を割算
+    countAnswer = aValue / bValue;
+    // 結果をアラートで表示
+    alert(countAnswer + "です。");
   }
 
   /**
@@ -60,9 +68,11 @@
   * @param aValue 左辺(a)の値
   * @param aValue 右辺(b)の値
   */
-  function amari(aValue, bValue) {
-    answer = aValue % bValue;
-    alert(answer + "です。");
+  function getRestResult(aValue, bValue) {
+    // 引数を割算した余りを算出
+    countAnswer = aValue % bValue;
+    // 結果をアラートで表示
+    alert(countAnswer + "です。");
   }
   </script>
 </head>
@@ -73,14 +83,14 @@
       変数「a」と「b」の計算結果を表示します。
     </p>
     <!-- aとbを加算した結果をアラートで表示する関数を呼び出し -->
-    <button onclick="tashizan(aValue, bValue)">足し算</button>
+    <button onclick="getAddResult(aValue, bValue)">足し算</button>
     <!-- aとbを減算した結果をアラートで表示する関数を呼び出し -->
-    <button onclick="hikizan(aValue, bValue)">引き算</button>
+    <button onclick="getSubtractionResult(aValue, bValue)">引き算</button>
     <!-- aとbを掛け算した結果をアラートで表示する関数を呼び出し -->
-    <button onclick="kakezan(aValue, bValue)">掛け算</button>
+    <button onclick="getMultiplicationResult(aValue, bValue)">掛け算</button>
     <!-- aとbを割り算した結果をアラートで表示する関数を呼び出し -->
-    <button onclick="warizan(aValue, bValue)">割り算</button>
+    <button onclick="getDivisionResult(aValue, bValue)">割り算</button>
     <!-- aとbを割り算した余りの値をアラートで表示する関数を呼び出し -->
-    <button onclick="amari(aValue, bValue)">余り</button>
+    <button onclick="getRestResult(aValue, bValue)">余り</button>
   </body>
 </html>
