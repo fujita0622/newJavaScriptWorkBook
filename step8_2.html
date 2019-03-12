@@ -1,0 +1,29 @@
+<!-- 演習(2) 1/2(1乗),1/2(2乗)…,1/2(10乗)まで計算するJavaScriptを記述してみましょう。 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>偶数の合計</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+    // 1/2(1乗),1/2(2乗)…,1/2(10乗)を合計した値をアラートで表示
+    function getEvenNumberTotal() {
+      var denominatorValue = 2; // 分母
+      var totalValue = 0; // 合計
+      // 10回ループ処理
+      for(var roopCount = 1; roopCount <= 10; roopCount++) {
+        // 合計に1/2(n乗)を加算
+        totalValue = totalValue + (1 / denominatorValue);
+        // 次の分母の値(2のn+1乗)を更新
+        denominatorValue = denominatorValue * 2;
+      }
+      // アラートで結果を表示
+      alert("2,4,6,8…,100の合計は" + totalValue + "です");
+    }
+  </script>
+</head>
+<body>
+  <h1>偶数の合計</h1>
+  <p>以下のボタンをクリックすると,<br>1/(2のn乗)を合計した結果を表示できます。</p>
+  <!-- 1/2(1乗)から1/2(10乗)までの合計した値をアラートで表示するメソッドの呼び出し -->
+  <button onclick="getEvenNumberTotal()">計算結果</button>
+</html>
