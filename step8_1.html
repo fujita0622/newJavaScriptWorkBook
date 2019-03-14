@@ -1,0 +1,29 @@
+<!--
+演習(1) 2,4,6,8…,100の合計を計算するホームページを作成してみましょう。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>偶数の合計</title>
+  <meta charset="utf-8">
+
+  <script type="text/javascript">
+    // 2から100までの偶数を合計した値をアラートで表示
+    function getEvenNumberTotal() {
+      var totalValue = 0; // 合計
+      // roopCount が100になるまでループ処理
+      for(var roopCount = 2; roopCount <= 100; roopCount = roopCount + 2) {
+        // 偶数の値を合計に加算
+        totalValue = totalValue + roopCount;
+      }
+      // アラートで結果を表示
+      alert("2,4,6,8…,100の合計は" + totalValue + "です");
+    }
+  </script>
+</head>
+<body>
+  <h1>偶数の合計</h1>
+  <p>以下のボタンをクリックすると,<br>2,4,6,8…,100を全て合計した結果を表示できます。</p>
+  <!-- 2から100までの偶数を合計した値をアラートで表示するメソッドの呼び出し -->
+  <button onclick="getEvenNumberTotal()">計算結果</button>
+</html>
