@@ -1,0 +1,80 @@
+<!--
+演習(1)引数を利用して、STEP6の演習(1)で作成したホームページを1つの関数「getMultiplicationResult()」だけで処理できるように改良してみましょう。
+仕様1：「getMultiplicationResult0()」「getMultiplicationResult1()」「getMultiplicationResult2()」という3つの関数を1つの関数「getMultiplicationResult」に凡用化します。
+仕様2：書くイベントハイドラでは、配列の添字を引数として関数「getMultiplicationResult()」に引き渡します。
+仕様3：関数「getMultiplicationResult()」では、引数を変数「arraySubscript」で受け取ります。
+仕様4：掛け算の演算では、「aArray」「bArray」の[]に変数[arraySubscript]を記述し、配列の添字に指定します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>配列の演算</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    table {
+      border: 2px solid #000;
+    }
+    th, td {
+      width: 100px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+    th {
+      background-color: #CCCCCC;
+    }
+    td:first-child {
+      background-color: #CCCCCC;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var aArray = [5, 12, 18];  // aの配列
+    var bArray = [33, 14, 65]; // bの配列
+    var countResult; // 演算結果
+
+    /**
+     * 引数同士を掛け算し、結果をアラートで表示
+     * @param arrayNumber 配列の添字
+     */
+    function getMultiplicationResult(arrayNumber) {
+      // 引数の値（配列の添字）を代入
+      var arraySubscript = arrayNumber;
+      // 引数を掛け算し演算結果を格納
+      countResult = aArray[arraySubscript] * bArray[arraySubscript];
+      // アラートで結果を表示
+      alert("答えは" + countResult + "です");
+    }
+  </script>
+</head>
+<body>
+  <h1>配列の演算</h1>
+  <table>
+    <tr>
+      <th>添字</th>
+      <th>a</th>
+      <th>b</th>
+      <th>a*bを計算</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>5</td>
+      <td>33</td>
+      <!-- aとbの配列の添字0の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="getMultiplicationResult(0)">計算結果</button></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>12</td>
+      <td>14</td>
+      <!-- aとbの配列の添字1の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="getMultiplicationResult(1)">計算結果</button></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>18</td>
+      <td>65</td>
+      <!-- aとbの配列の添字2の値同士を掛け算し、結果をアラートで表示するメソッドを呼び出す -->
+      <td><button onclick="getMultiplicationResult(2)">計算結果</button></td>
+    </tr>
+  </table>
+</html>
