@@ -1,0 +1,31 @@
+<!--
+演習(1) JavaScriptを利用し、下記仕様のようにボタンをクリックすると解答を表示するホームページを作成してみましょう。
+仕様1：解答表示用のボタンはBUTTONタグで作成します。<BUTTON> 〜 </BUTTON>の間には、ボタンを表示する文字を記述します。
+仕様2：ボタンをクリックすると、関数「getQuestionAnswer()」が呼び出されるように、BUTTONタグにonclikイベントを追加します。
+仕様3：関数「getQuestionAnswer()」では、変数「questionAnswer」に"富士山"という文字に代入し、alert()で変数「questionAnswer」を表示します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP4 演習問題</title>
+  <meta charset="utf-8">
+</head>
+
+<script type="text/javascript">
+  /**
+ * ボタン押下時、アラートでメッセージを表示
+ */
+  function getQuestionAnswer() {
+    var questionAnswer = "富士山"; // 問題の答え
+    alert(questionAnswer); // "富士山"とアラートで表示
+  }
+</script>
+
+<body>
+  <h1>問題</h1>
+  <p>日本で一番高い山は?
+    <!-- ボタン押下時、アラートで答えを表示するメソッドを呼び出し -->
+    <button onclick="getQuestionAnswer()">答えを見る</button>
+  </p>
+</body>
+</html>
