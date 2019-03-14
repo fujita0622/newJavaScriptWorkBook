@@ -46,14 +46,14 @@
       var unitPrice = [300, 450, 520]; // 各商品の単価
       // 各商品の単価を10個分表示するまでループ処理
       for(var createTableRoop = 1; createTableRoop <= LINES_END; createTableRoop++) {
-          // 個数を表示
-          document.write('<tr><td>' + createTableRoop + '</td>');
+        // 個数を表示
+        document.write('<tr><td>' + createTableRoop + '</td>');
         // 各商品の単価*個数を表示
         for (var arrayAddRoop = 0; arrayAddRoop < unitPrice.length; arrayAddRoop++) {
           document.write('<td>' + (unitPrice[arrayAddRoop] * createTableRoop) + '円</td>');
         }
-          // 行を閉じる
-          document.write('</tr>');
+        // 行を閉じる
+        document.write('</tr>');
       }
     </script>
   </table>
