@@ -31,12 +31,12 @@
     * クリック回数に応じて、ヒントか答えをアラートで表示
     */
     function getAnswer () {
+      // クリック回数に1を加算
+      clickCount++;
       // 初めてのクリックの場合
-      if (clickCount == 0) {
+      if (clickCount == 1) {
         // ヒントを表示
         alert(QUESTION_HINT);
-        // クリック回数に1を加算
-        clickCount++;
       // 2回目以降のクリックの場合
       } else {
         // 答えを表示
