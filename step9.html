@@ -1,0 +1,61 @@
+<!--
+演習(1) P.48のような表をJavaScriptで作成してみましょう。
+仕様1：CSSを記述し、THタグ,TDタグに以下のような書式を指定します。
+  THタグ:width: 80px; background-color: #CCCCCC;
+  TDタグ:width: 80px; text-align: right;
+仕様2：表の一行目まではhtmlで作成し、表の2〜11行目をJavaScriptで作成します。
+仕様3：JavaScriptでは「tanka」という配列に各商品の単価を代入しておきましょう。
+  tanka[0] = 300;
+  tanka[1] = 450;
+  tanka[2] = 520;
+仕様4：表の2〜11行目は、2重ループ繰り返し処理を使って作成します。各セルの値（単価×個数）は、繰り返し処理の変数「i」「j」と配列「tanka」により計算します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>単価×個数の一覧表</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    table {
+      border: #000 solid 2px;
+    }
+    th, td {
+      border: #000 solid 1px;
+    }
+    th {
+      width: 80px;
+      background-color: #CCCCCC;
+    }
+    td {
+      width: 80px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>個数</th>
+      <th>商品A</th>
+      <th>商品B</th>
+      <th>商品C</th>
+    </tr>
+
+    <script type="text/javascript">
+      const LINES_END = 10; // 表の最終行
+      var unitPrice = [300, 450, 520]; // 各商品の単価
+      // 各商品の単価を10個分表示するまでループ処理
+      for(var createTableRoop = 1; createTableRoop <= LINES_END; createTableRoop++) {
+        // 個数を表示
+        document.write('<tr><td>' + createTableRoop + '</td>');
+        // 各商品の単価*個数を表示
+        for (var arrayAddRoop = 0; arrayAddRoop < unitPrice.length; arrayAddRoop++) {
+          document.write('<td>' + (unitPrice[arrayAddRoop] * createTableRoop) + '円</td>');
+        }
+        // 行を閉じる
+        document.write('</tr>');
+      }
+    </script>
+  </table>
+</body>
+</html>
