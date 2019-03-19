@@ -1,0 +1,58 @@
+<!--
+演習(2) p.51の「Sample10_1.html」を参考に、以下のようなホームページを作成してみましょう。
+仕様1：xの2乗を示す上つき文字は<SUP></SUP>のタグで表示します。
+仕様2：関数「hantei()」の条件分岐では、以下のように条件をします。
+  ①「x」が2と等しければ「正解！」と表示（それ以外は②に進む）
+  ②「x」が3と等しければ「正解！」と表示（それ以外は③に進む）
+  ③それ以外の場合は「間違い！」と表示
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>（問題）</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>（問題）</h1>
+  <p>次の二次元方程式を満たす解を求め、そのボタンをクリックしなさい。</p>
+  <h2>x<sup>2</sup>-5x=-6</h2>
+  <script type="text/javascript">
+    const ROOP_CONFIG = { // ループ処理設定
+      'start' : 1, // 設定値：ループの開始
+      'end'   : 5, // 設定値：ループの終了
+    }
+    // ボタンを5つ表示するまでループ処理
+    for(var roopCount = ROOP_CONFIG.start; roopCount <= ROOP_CONFIG.end; roopCount++) {
+      // 引数の値に応じて判定結果をアラートで表示するメソッドを呼び出すボタンを表示
+      document.write('<button onclick="getJudgmentResult(' + roopCount + ')">x=' + roopCount + '</button> ');
+    }
+  </script>
+  <p>※答えは2つあります。</p>
+  
+  <script type="text/javascript">
+    const QUESTION_ANSWER = { // 問題の判定結果
+        'good' : "正解！",  // 正解
+        'bad'  : "間違い！" // 不正解
+      }
+    /**
+    * 引数の値に応じて判定結果をアラートで表示
+    * @param xValue 判定する値
+    */
+    function getJudgmentResult(xValue) {
+      // xの値が2の場合
+      if (xValue == 2) {
+        // 正解のメッセージを表示
+        alert(QUESTION_ANSWER.good);
+      // xの値が3の場合
+      } else if (xValue == 3) {
+        // 正解のメッセージを表示
+        alert(QUESTION_ANSWER.good);
+      // それ以外の場合
+      } else {
+        // 不正解のメッセージを表示
+        alert(QUESTION_ANSWER.bad);
+      }
+    }
+  </script>
+</body>
+</html>

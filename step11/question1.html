@@ -1,0 +1,51 @@
+<!--
+演習(1) p.57を参考に、swich文で以下のようなホームページを作成してみましょう。
+仕様1：ボタンをクリックした回数を数えるために変数「i」を用意し、変数「i」の値に応じて条件分岐を行います。
+仕様2：ボタンをクリックすると、関数「kotae()」を実行します。
+仕様3：関数「kotae()」では、ボタンをクリックした回数に応じて表示するメッセージを以下のように変化させます。
+  1回目:【ヒント】北海道は県ではありません";
+  2回目:【ヒント】東北地方にある県です";
+  3回目以降:"答えは岩手県です";
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>（問題）</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>（問題）</h1>
+  <p>日本で最も面積の大きい"県"は何県でしょう?</p>
+  <!-- クリック回数に応じて、ヒントか答えをアラートで表示するメソッドを呼び出し -->
+  <button onclick="getAnswer()">答えを見る</button>
+  <p>※ボタンのクリックがを2回までの間はヒントが表示されます。</p>
+  <p>※ボタンを3回以上クリックすると、答えが表示されます。</p>
+  <script type="text/javascript">
+    // 問題のヒント
+    const FIRST_HINT      = "【ヒント】北海道は県ではありません"; // 最初のヒント
+    const SECOND_HINT     = "【ヒント】東北地方にある県です"; // 2回目のヒント
+    const QUESTION_ANSWER = "答えは岩手県です";// 問題の答え
+    var clickCount = 0; // クリック回数
+
+    /**
+    * クリック回数に応じて、ヒントか答えをアラートで表示
+    */
+    function getAnswer () {
+      // クリック回数に1加算
+      clickCount++;
+      // クリック回数に応じて条件分岐
+      switch(clickCount) {
+        case 1: // 1回目のクリック
+          // 1回目のヒントを表示
+          alert(FIRST_HINT);
+          break; // switch文終了
+        case 2: // 2回目のクリック
+          alert(SECOND_HINT); // 2回目のヒントを表示
+          break; // switch文終了
+        default: // 3回目以降のクリック
+          alert(QUESTION_ANSWER); //答えを表示
+      }
+    }
+  </script>
+</body>
+</html>
