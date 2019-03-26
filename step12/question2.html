@@ -1,0 +1,48 @@
+<!--
+演習(2) 演習(1)をwhile文で作成してみましょう。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>三次方程式</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>三次方程式</h1>
+  <h2>x<sup>3</sup>-53x<sup>2</sup>+620x-1036=0</h2>
+  <p>※三次方程式の解は3個あり、全て1以上の整数です。</p>
+  <p>※ボタンをクリックすると、3次方程式の解を表示できます。</p>
+  <!-- クリックしたら答えをアラートで表示するメソッドを呼び出し -->
+  <button onclick="getAnswer()">解答を見る</button>
+  <script type="text/javascript">
+    var answerArray = new Array(3); // 三次方程式の解の値 配列個数:3
+    var answerCount = 0; // 解の個数
+    var calculationResult = 0; // 演算結果
+    const ROOP_END_COUNT = 3; // ループ終了の基準値
+
+    /**
+    * 問題の答えをアラートで表示
+    */
+    function getAnswer () {
+      var roopCount = 0; // ループ数
+      // 解の個数が3になるまでループ処理
+      while(answerCount < ROOP_END_COUNT) {
+        // 計算式「x(3乗)-53x(2乗)+620x-1036」のx部分にroopCountの値を代入し演算した結果を変数に代入
+        calculationResult = (roopCount ** 3) - (53 * roopCount ** 2) + (620 * roopCount) - 1036;
+        // 演算結果が0の場合
+        if (calculationResult == 0) {
+          // 解の値を代入
+          answerArray[answerCount] = roopCount;
+          // 解の個数に1加算
+          answerCount++;
+        }
+        roopCount++; // ループ数に1を加算
+      }
+      // 配列の値を「、」区切りでつなげる
+      const answerString = answerArray.join('、');
+      // 3つの解をアラートで表示
+      alert('答えは' + answerString + 'です。');
+    }
+  </script>
+</body>
+</html>
