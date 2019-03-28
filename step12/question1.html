@@ -1,0 +1,57 @@
+<!--
+演習(1) 変数「x」が1、２、３‥、と変化するfor文を利用し、以下のような三次方程式の解を求めるHPを作成してみましょう。
+なお、3つの解が見つかった時点で、breakにより繰り返し処理を強制終了させます。
+仕様1：ボタンをクリックすると関数「kaitou()」を実行します。
+仕様2：関数「kaitou()」では、配列「kai」および変数「s」「i」を宣言します。
+  var kai = new Array(3); <見つかった解を保持する配列>
+  var s;                  <解の判定に使用する変数>
+  var i = 0;              <見つかった解の個数を数える変数>
+仕様3：続いて、変数「x」による繰り返し処理を行い、変数「s」に「x(3乗)-53x(2乗)+620x-1036」の計算結果を代入します。
+仕様4：「s」が0であった場合はkai[i]に「x」を代入し、「i」を1つ増やします。
+仕様5：「i」が3になったら、breakで繰り返し処理を強制終了させます。
+仕様6：繰り返し処理が終了された後は、alert()でkai[0] ~ kai[2]を表示します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>三次方程式</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>三次方程式</h1>
+  <h2>x<sup>3</sup>-53x<sup>2</sup>+620x-1036=0</h2>
+  <p>※三次方程式の解は3個あり、全て1以上の整数です。</p>
+  <p>※ボタンをクリックすると、3次方程式の解を表示できます。</p>
+  <!-- クリックしたら答えをアラートで表示するメソッドを呼び出し -->
+  <button onclick="getAnswer()">解答を見る</button>
+  <script type="text/javascript">
+    var answerArray = new Array(3); // 三次方程式の解の値 配列個数:3
+    var answerCount = 0; // 解の個数
+    var calculationResult = 0; // 演算結果
+    var correntValue = 0;// 正解の値
+    var roopEndCount = 3; // ループ終了の基準値
+
+    /**
+    * 問題の答えをアラートで表示
+    */
+    function getAnswer () {
+      // 解の個数が3になるまでループ処理
+      for (var roopCount=1; answerCount < roopEndCount; roopCount++) {
+        // 計算式「x(3乗)-53x(2乗)+620x-1036」のx部分にroopCountの値を代入し演算した結果を変数に代入
+        calculationResult = (roopCount ** 3) - (53 * roopCount ** 2) + (620 * roopCount) - 1036;
+        // 演算結果が0の場合
+        if (calculationResult == correntValue) {
+          // 解の値を代入
+          answerArray[answerCount] = roopCount;
+          // 解の個数に1加算
+          answerCount++;
+        }
+      }
+      // 配列の値を「、」区切りでつなげる
+      var answerString = answerArray.join('、');
+      // 3つの解をアラートで表示
+      alert('答えは' + answerString + 'です。');
+    }
+  </script>
+</body>
+</html>
