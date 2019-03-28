@@ -28,18 +28,19 @@
     var answerArray = new Array(3); // 三次方程式の解の値 配列個数:3
     var answerCount = 0; // 解の個数
     var calculationResult = 0; // 演算結果
-    const ROOP_END_COUNT = 3; // ループ終了の基準値
+    var correntValue = 0;// 正解の値
+    var roopEndCount = 3; // ループ終了の基準値
 
     /**
     * 問題の答えをアラートで表示
     */
     function getAnswer () {
       // 解の個数が3になるまでループ処理
-      for (var roopCount=1; answerCount < ROOP_END_COUNT; roopCount++) {
+      for (var roopCount=1; answerCount < roopEndCount; roopCount++) {
         // 計算式「x(3乗)-53x(2乗)+620x-1036」のx部分にroopCountの値を代入し演算した結果を変数に代入
         calculationResult = (roopCount ** 3) - (53 * roopCount ** 2) + (620 * roopCount) - 1036;
         // 演算結果が0の場合
-        if (calculationResult == 0) {
+        if (calculationResult == correntValue) {
           // 解の値を代入
           answerArray[answerCount] = roopCount;
           // 解の個数に1加算
@@ -47,7 +48,7 @@
         }
       }
       // 配列の値を「、」区切りでつなげる
-      const answerString = answerArray.join('、');
+      var answerString = answerArray.join('、');
       // 3つの解をアラートで表示
       alert('答えは' + answerString + 'です。');
     }
