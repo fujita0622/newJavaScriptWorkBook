@@ -1,0 +1,69 @@
+<!--
+演習(1) 18と12、12と20、612と468の最小公倍数を求めるホームページを作成してみましょう。
+仕様1：最小公倍数は関数「kobaisu()」で求めます。
+仕様2：関数「kobaisu()」の処理手順
+  ①引数として渡された「a」「b」を比較し、大きい方を変数「large」に代入します。
+  ②「a」×「b」の値を変数「max」に代入します。
+  ③「large」から「max」まで1ずつ増加する変数「i」により繰り返し処理を行います。
+  ④繰り返し処理では、「i」が「a」と「b」の両方で割り切れるかを判定します。そして、ともに割り切れる場合の「i」を「戻り値」として返し、関数「kobaisu()」を強制終了させます。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>最小公倍数</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>最小公倍数</h1>
+  <script type="text/javascript">
+    const PROBLEM_TOTAL = 3; // 問題数
+    const PROBLEM_VALUES = { // 問題で計算する値
+      'left'  : [18, 12, 612], // 問題の左辺の値
+      'right' : [12, 20, 468]  // 問題の右辺の値
+    };
+    var resultLeastCommonDivisor = new Array(3); // 算出した最小公約数の値
+
+    /**
+    * 二つの数値から最小公約数を算出
+    * @param  leftValue  演算する左辺の値
+    * @param  rightValue 演算する右辺の値
+    * @return 最小公約数
+    */
+    function getLeastCommonDivisor (leftValue, rightValue) {
+      var largeValue; // 二つの値を比較した中で大きい方の値
+      var multiplicationValue;// 二つの値を掛け算した値
+
+      // 二つの値を掛け算した値を変数に代入
+      multiplicationValue = leftValue * rightValue;
+
+      // 左辺が右辺以上の場合
+      if (leftValue >= rightValue) {
+        // 左辺の値を変数に代入
+        largeValue = leftValue;
+      // 右辺が左辺より大きい場合
+      } else {
+        largeValue = rightValue;
+      }
+
+      // 最小公約数が導き出されるまでループ処理
+      for(var roopCount = largeValue; roopCount < multiplicationValue; roopCount++) { 
+        // 最小公約数の条件
+        // ①左辺と右辺で共に割り算し0になる値
+        // ②割る値は左辺と右辺を比較し大きい方の値から始まり共に0になる値が算出されるまで1ずつ加算しループする
+        if (roopCount % leftValue == 0 && roopCount % rightValue == 0) {
+          // 最小公約数の場合は結果を返す
+          return roopCount;
+        }
+      }
+    }
+    
+    // 問題の総数文ループ処理
+    for(var roopCount = 0; roopCount < PROBLEM_TOTAL; roopCount++) {
+      // 二つの数値から最小公約数を算出し結果を変数に代入
+      var resultLeastCommonDivisor = getLeastCommonDivisor(PROBLEM_VALUES.left[roopCount], PROBLEM_VALUES.right[roopCount]);
+      // 結果を出力
+      document.write('<p>' + PROBLEM_VALUES.left[roopCount] + 'と' + PROBLEM_VALUES.right[roopCount] + 'の最小公倍数は' + resultLeastCommonDivisor + 'です。</p>');
+    }
+  </script>
+</body>
+</html>
