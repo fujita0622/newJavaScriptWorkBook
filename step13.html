@@ -40,31 +40,23 @@
       if (leftValue >= rightValue) {
         // 左辺の値を変数に代入
         largeValue = leftValue;
-      // 右辺が左辺以上の場合
-      } else if(rightValue >= leftValue) {
-        // 右辺を変数に代入
-        largeValue = rightValue;
-      // 二つの値が同じ場合
+      // 右辺が左辺より大きい場合
       } else {
-        // 空文字を代入
-        largeValue = '';
+        largeValue = rightValue;
       }
 
-      // 変数largeValueに値がある場合
-      if (largeValue !== '') {
-        // 最小公約数が導き出されるまでループ処理
-        for(var roopCount = largeValue; roopCount < multiplicationValue; roopCount++) { 
-          // 最小公約数の条件
-          // ①左辺と右辺で共に割り算し0になる値
-          // ②割る値は左辺と右辺を比較し大きい方の値から始まり共に0になる値が算出されるまで1ずつ加算しループする
-          if (roopCount % leftValue == 0 && roopCount % rightValue == 0) {
-            // 最小公約数の場合は結果を返す
-            return roopCount;
-          }
+      // 最小公約数が導き出されるまでループ処理
+      for(var roopCount = largeValue; roopCount < multiplicationValue; roopCount++) { 
+        // 最小公約数の条件
+        // ①左辺と右辺で共に割り算し0になる値
+        // ②割る値は左辺と右辺を比較し大きい方の値から始まり共に0になる値が算出されるまで1ずつ加算しループする
+        if (roopCount % leftValue == 0 && roopCount % rightValue == 0) {
+          // 最小公約数の場合は結果を返す
+          return roopCount;
         }
       }
     }
-
+    
     // 問題の総数文ループ処理
     for(var roopCount = 0; roopCount < PROBLEM_TOTAL; roopCount++) {
       // 二つの数値から最小公約数を算出し結果を変数に代入
