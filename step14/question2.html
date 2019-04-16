@@ -1,0 +1,61 @@
+<!--
+演習(1) STEP13の演習(1)をプロンプトから2つの数値を入力できるように変更してみましょう。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>最小公倍数</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>最小公倍数</h1>
+  <p>以下のボタンをクリックして2つの値を入力すると、<br>入力した2つの数値の最小公倍数を表示できます。</p>
+  <button onclick="getLeastCommonDivisor()">最小公倍数を求める</button>
+  <script type="text/javascript">
+    var inputValues = { // 入力ポップアップで入力される値
+      'firstInputValue' : 0, // 1回目に入力される値 初期値:0
+      'nextInputValue'  : 0  // 2回目に入力される値 初期値:0
+    };
+    const PROMPT_MESSAGES = { // 入力ポップアップのメッセージ内容
+      'firstInputValue' : '1つ目の値を入力してください', // 1回目の入力ポップアップのメッセージ
+      'nextInputValue'  : '2つ目の値を入力してください'  // 2回目の入力ポップアップのメッセージ
+    };
+    const PROMPT_INITIAL_VALUE = ''; // 入力ポップアップの初期値
+
+    // 二つの数値から最小公倍数を算出
+    function getLeastCommonDivisor () {
+      // 1回目の入力ポップアップの入力値 
+      //第二引数を空にし初期値を指定しない
+      inputValues.firstInputValue = prompt(PROMPT_MESSAGES.firstInputValue , PROMPT_INITIAL_VALUE);
+      // 2回目の入力ポップアップの入力値
+      inputValues.nextInputValue  = prompt(PROMPT_MESSAGES.nextInputValue , PROMPT_INITIAL_VALUE);
+
+      var largeValue; // 入力された二つの値を比較し大きい方の値
+      // 入力された二つの値を掛け算した値
+      var multiplicationValue = inputValues.firstInputValue * inputValues.nextInputValue;
+
+      // 一つ目の値が二つ目の値以上の場合
+      if (inputValues.firstInputValue >= inputValues.nextInputValue) {
+        // 一つ目の値を変数に代入
+        largeValue = inputValues.firstInputValue;
+      // 二つ目の値が一つ目の値より大きいの場合
+      } else {
+        // 二つ目の値を変数に代入
+        largeValue = inputValues.nextInputValue;
+      }
+
+      // 最小公倍数が導き出されるまでループ処理
+      for(var roopCount = largeValue; roopCount < multiplicationValue; roopCount++) { 
+        // 最小公倍数の条件
+        // ①1つ目の値と2つ目の値で共に割り算し0になる値
+        // ②割る値は1つ目の値と2つ目の値を比較し大きい方の値から始まり、共に0になる値が算出されるまで1ずつ加算しループする
+        if (roopCount % inputValues.firstInputValue === 0 && roopCount % inputValues.nextInputValue === 0) {
+          // 最小公倍数の場合は結果をアラートで出力しループを終了
+          alert(inputValues.firstInputValue + 'と' + inputValues.nextInputValue + 'の最小公倍数は' + roopCount + 'です。');
+          break;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

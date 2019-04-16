@@ -1,0 +1,54 @@
+<!--
+演習(1) 以下のようなHPを作成してみましょう。
+仕様1：ボタンをクリックするとプロンプトを表示
+仕様2：入力した内容が「岩手県」の場合「正解です」とアラートで表示
+仕様3：入力した内容が「北海道」の場合「北海道は県ではありませんよ」とアラートで表示
+仕様4：入力した内容上記仕様以外の場合「間違いです」とアラートで表示
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>（問題）</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>（問題）</h1>
+  <p>日本で最も面積の大きい"県"は何県でしょう?</p>
+  <button onclick="getAnswer()">答えを入力</button>
+  <script type="text/javascript">
+    // 問題の返答内容
+    const PROBLEM_REPLY = {
+      'correctAnswer'   : '正解です', // 正解
+      'exceptionAnswer' : '北海道は県ではありませんよ', // 不正解:例外
+      'badAnswer'       : '間違いです' // 不正解
+    }
+    // 問題の解答
+    const PROBLEM_ANSWER = {
+      'correctAnswer'   : '岩手県', // 正解
+      'exceptionAnswer' : '北海道'  // 不正解:例外
+    }
+    const PROMPT_MESSAGES = '答えを入力してください'; // 入力ポップアップのメッセージ
+    const PROMPT_INITIAL_VALUE = ''; // 入力ポップアップの初期値
+
+    // 入力ポップアップを表示、解答に応じた内容のポップアップを表示
+    function getAnswer() {
+      // 入力ポップアップに入力された値
+      // 第二引数を空にし初期値を指定しない
+      var inputValue = prompt(PROMPT_MESSAGES , PROMPT_INITIAL_VALUE);
+      // 入力値が'岩手県'の場合
+      if (inputValue === PROBLEM_ANSWER.correctAnswer) {
+        // 正解の返答内容をアラートで表示
+        alert(PROBLEM_REPLY.correctAnswer);
+      // 入力値が'北海道'の場合
+      } else if (inputValue === PROBLEM_ANSWER.exceptionAnswer) {
+        // 不正解(例外)の返答内容をアラートで表示
+        alert(PROBLEM_REPLY.exceptionAnswer);
+      // それ以外の場合
+      } else {
+        // 不正解の返答内容をアラートで表示
+        alert(PROBLEM_REPLY.badAnswer);
+      }
+    }
+  </script>
+</body>
+</html>
