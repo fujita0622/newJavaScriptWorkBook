@@ -16,11 +16,19 @@
       'firstInputValue' : 0, // 1回目に入力される値 初期値:0
       'nextInputValue'  : 0  // 2回目に入力される値 初期値:0
     };
+    const PROMPT_MESSAGES = { // 入力ポップアップのメッセージ内容
+      'firstInputValue' : '1つ目の値を入力してください', // 1回目の入力ポップアップのメッセージ
+      'nextInputValue'  : '2つ目の値を入力してください'  // 2回目の入力ポップアップのメッセージ
+    };
+    const PROMPT_INITIAL_VALUE = ''; // 入力ポップアップの初期値
 
-    // 二つの数値から最小公約数を算出
+    // 二つの数値から最小公倍数を算出
     function getLeastCommonDivisor () {
-      inputValues.firstInputValue = prompt('1つ目の値を入力してください' , ''), // 1回目の入力ポップアップの入力値
-      inputValues.nextInputValue  = prompt('2つ目の値を入力してください' , '')  // 1回目の入力ポップアップの入力値
+      // 1回目の入力ポップアップの入力値 
+      //第二引数を空にし初期値を指定しない
+      inputValues.firstInputValue = prompt(PROMPT_MESSAGES.firstInputValue , PROMPT_INITIAL_VALUE);
+      // 2回目の入力ポップアップの入力値
+      inputValues.nextInputValue  = prompt(PROMPT_MESSAGES.nextInputValue , PROMPT_INITIAL_VALUE);
 
       var largeValue; // 入力された二つの値を比較し大きい方の値
       // 入力された二つの値を掛け算した値
@@ -36,13 +44,13 @@
         largeValue = inputValues.nextInputValue;
       }
 
-      // 最小公約数が導き出されるまでループ処理
+      // 最小公倍数が導き出されるまでループ処理
       for(var roopCount = largeValue; roopCount < multiplicationValue; roopCount++) { 
-        // 最小公約数の条件
+        // 最小公倍数の条件
         // ①1つ目の値と2つ目の値で共に割り算し0になる値
         // ②割る値は1つ目の値と2つ目の値を比較し大きい方の値から始まり、共に0になる値が算出されるまで1ずつ加算しループする
         if (roopCount % inputValues.firstInputValue === 0 && roopCount % inputValues.nextInputValue === 0) {
-          // 最小公約数の場合は結果をアラートで出力しループを終了
+          // 最小公倍数の場合は結果をアラートで出力しループを終了
           alert(inputValues.firstInputValue + 'と' + inputValues.nextInputValue + 'の最小公倍数は' + roopCount + 'です。');
           break;
         }

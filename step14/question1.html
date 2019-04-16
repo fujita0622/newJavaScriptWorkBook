@@ -27,10 +27,14 @@
       'correctAnswer'   : '岩手県', // 正解
       'exceptionAnswer' : '北海道'  // 不正解:例外
     }
+    const PROMPT_MESSAGES = '答えを入力してください'; // 入力ポップアップのメッセージ
+    const PROMPT_INITIAL_VALUE = ''; // 入力ポップアップの初期値
 
     // 入力ポップアップを表示、解答に応じた内容のポップアップを表示
     function getAnswer() {
-      var inputValue = prompt('答えを入力してください' , ''); // 入力ポップアップに入力された値
+      // 入力ポップアップに入力された値
+      // 第二引数を空にし初期値を指定しない
+      var inputValue = prompt(PROMPT_MESSAGES , PROMPT_INITIAL_VALUE);
       // 入力値が'岩手県'の場合
       if (inputValue === PROBLEM_ANSWER.correctAnswer) {
         // 正解の返答内容をアラートで表示
