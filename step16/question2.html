@@ -1,0 +1,73 @@
+<!--
+演習(2) 演習(1)を関数を用いて汎用化してみましょう。また、新しいウィンドウの名前を"NewWindow"にし、以下の属性を指定してみましょう。
+  scrollbars=yes
+  width=1000
+  height=600
+  仕様1:各サイトのURLを引数として関数「hiraku()」を呼び出します。
+  仕様2:関数「hiraku()」では、変数「url」で引数を受け取ります。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>政治関連のリンク集</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    table {
+      border: 1px solid #000;
+    }
+    th,td {
+      padding: 10px;
+      border: 1px solid #000;
+    }
+
+    th {
+      color: #FFF;
+      background-color: #006600;
+    }
+  </style>
+  <script type="text/javascript">
+    // 政治関連のサイト名とURL一覧
+    const POLITICS_LINKS = [
+      {'siteName' : '首相官邸', 'siteUrl' : 'http://www.kantei.go.jp/'},
+      {'siteName' : '衆議院'  , 'siteUrl' : 'http://www.shugiin.go.jp/'},
+      {'siteName' : '衆議院TV', 'siteUrl' : 'http://www.shugiintv.go.jp/'}
+    ];
+
+    /*
+    * 新規ウィンドウで引数URLを開く
+    * @param siteUrl 新規ウィンドウで開くURL
+    */
+    function openNewWindow(siteUrl) {
+      // 新規で開くウィンドウの設定情報
+      var openWindowSettings = {
+        'ooenSiteUrl' : siteUrl, // URL
+        'windowName' : 'NewWindow', // ウィンドウ名
+        'windowAttribute' : 'scrollbars=yes, width=1000, height=600', // 属性
+      };
+      // 新規でウィンドウを開く
+      window.open(openWindowSettings.ooenSiteUrl, openWindowSettings.windowName, openWindowSettings.windowAttribute);
+    }
+  </script>
+</head>
+<body>
+  <h1>政治関連のリンク集</h1>
+  <p>「開く」ボタンをクリックすると、そのホームページを新しいウィンドウで表示できます。</p>
+  <table>
+    <tr>
+    <script type="text/javascript">
+      // 配列の数だけループ処理
+      for(roopCount = 0; roopCount < Object.keys(POLITICS_LINKS).length; roopCount++) {
+        document.write('<tr>');
+        // サイト名を表示
+        document.write('<th>' + POLITICS_LINKS[roopCount].siteName + '</th>');
+        // サイトのURLを表示
+        document.write('<td>' + POLITICS_LINKS[roopCount].siteUrl + '</td>');
+        // サイトに遷移するボタンを表示
+        document.write(`<td><button onclick="openNewWindow('${POLITICS_LINKS[roopCount].siteUrl}');">開く</button></td>`);
+        document.write('</tr>');
+      };
+    </script>
+    </tr>
+  </table>
+</body>
+</html>
