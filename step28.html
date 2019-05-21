@@ -1,0 +1,32 @@
+<!--
+演習(1) setInterval()を利用し、テキストボックスに現在の時刻（時:分:秒）をリアルタイムで表示するHPを作成してみましょう。
+  仕様1：(時:分:秒)は、それぞれの数値を必ず2桁表示します。
+  仕様2：FORMタグには"F1"、テキストボックスには"tbox"という名前をつけ、これらの名前でオブジェクトを指定します。
+  仕様3：BODYタグにonloadイベントを追加し、setInterval()で1秒おきに関数「nowTime()」を実行します。
+  仕様4：関数「nowTime()」では、Dateオブジェクト「now」を作成し、メソッドで時、分、秒を取り出します。
+        なお、これらの数値が10未満であった場合は、最初に"0"の文字を追加してから現在の時刻を表示します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ようこそホームページへ</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+    const INTERVAL_TIME = 1000; // インターバル
+    // 現在の時刻を'時:分:秒'形式で取得
+    function getNowTime () {
+      // dateオブジェクト生成し現在時刻を取得
+      var nowTime = new Date();
+      // フォームのテキストフォームの値を現在の時刻を'時:分:秒'形式で代入
+      document.getElementById('nowTimeTextBox').value = nowTime.toLocaleTimeString();
+    }
+  </script>
+</head>
+<!-- 1秒間隔で現在時刻を取得しフォームのテキストボックスに表示 -->
+<body onload="setInterval('getNowTime()', INTERVAL_TIME)">
+  <h1>ようこそホームページへ</h1>
+  <form id="nowTimeForm">
+    <p>現在の時刻は<input type="text" id="nowTimeTextBox" value="">です。</p>
+  </form>
+</body>
+</html>
