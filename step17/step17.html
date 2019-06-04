@@ -1,0 +1,123 @@
+<!--
+演習(1) ボタンのクリックで、写真1枚分だけ画面を左右にスクロールできるHPを作成してみましょう。
+仕様1:以下のようなCSSを指定します。
+  body{color:#FFF; background-color:#000;}
+  table{width:1600px;}
+  td{width:400px; text-align:center;}
+  img{margin-bottom: 5px; border: solid 5px #FFF;}
+仕様2:ボタンのクリックで関数「right()」および関数「left()」を呼び出します。
+仕様3:関数「right()」では、画面を右方向へゆっくりと400pxだけスクロールさせます。
+仕様4:関数「left()」では、画面を左方向へゆっくりと400pxだけスクロールさせます。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>明治村の写真</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      color: #FFF;
+      background-color: #000;
+    }
+    table {
+      width: 1600px;
+    }
+    td {
+      width: 400px;
+      text-align: center;
+    }
+    img {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 5px;
+      border: solid 5px #FFF;
+    }
+    button {
+      margin: 3px;
+    }
+  </style>
+  <script type="text/javascript">
+  const X_SCROLL_AMONT = { // x軸のスクロール量
+    'leftDirection' : 400, // 左方向
+    'rightDirection' : -400 // 右方向
+  };
+  const Y_SCROLL_AMONT = 0; // y軸のスクロール量
+  const INTERVAL_TIME = 1; // インターバル
+  const SCROLL_UNIT = { // スクロール単位
+    'leftDirection' : 1, // 左方向
+    'rightDirection' : -1 // 右方向
+  };
+  var scrollUnit; // スクロール単位
+  var roopCount = 0; // ループ回数
+  
+  // クリック時、右方向にスクロール
+  function windowScrollRight() {
+    // 一定間隔で処理を繰り返す関数を定義
+    var scrollFunction = setInterval(function() {
+      // ループ回数を加算
+      roopCount++;
+      // 画面をx軸方向に1スクロール
+      window.scrollBy(SCROLL_UNIT.leftDirection, Y_SCROLL_AMONT);
+      console.log(roopCount);
+      // windowのスクロール量とループ回数が一致した場合
+      if (X_SCROLL_AMONT.leftDirection === roopCount) {
+        // setIntervalの処理を停止
+        clearInterval(scrollFunction);
+        // ループ回数を初期化
+        roopCount = 0;
+      }
+    // 指定した間隔で処理を繰り返す
+    } , INTERVAL_TIME);
+  }
+
+  // クリック時、左方向にスクロール
+  function windowScrollLeft() {
+    // 一定間隔で処理を繰り返す関数を定義
+    var scrollFunction = setInterval(function() {
+      // ループ回数を減算
+      roopCount--;
+      // 画面をx軸方向に1スクロール
+      window.scrollBy(SCROLL_UNIT.rightDirection, Y_SCROLL_AMONT);
+      console.log(roopCount);
+      // windowのスクロール量とループ回数が一致した場合
+      if (roopCount === X_SCROLL_AMONT.rightDirection) {
+        // setIntervalの処理を停止
+        clearInterval(scrollFunction);
+        // ループ回数を初期化
+        roopCount = 0;
+      }
+    // 指定した間隔で処理を繰り返す
+    } , INTERVAL_TIME);
+  }
+
+  </script>
+</head>
+<body>
+  <h1>明治村の写真</h1>
+  <p>※ボタンをクリックすると、写真1枚だけ画面を左右にスクロールできます。</p>
+  <table>
+    <tr>
+      <td>
+        <img src="img/meiji01.jpg">
+        <button onclick="windowScrollRight()">右へ移動-></button>
+      </td>
+      <td>
+        <img src="img/meiji02.jpg">
+        <button onclick="windowScrollLeft()"><-左へ移動</button>
+        <button onclick="windowScrollRight()">右へ移動-></button>
+      </td>
+      <td><img src="img/meiji03.jpg">
+        <button onclick="windowScrollLeft()"><-左へ移動</button>
+        <button onclick="windowScrollRight()">右へ移動-></button>
+      </td>
+      <td>
+        <img src="img/meiji04.jpg">
+        <button onclick="windowScrollLeft()"><-左へ移動</button>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
