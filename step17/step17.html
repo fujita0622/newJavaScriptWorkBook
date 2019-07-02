@@ -16,8 +16,6 @@
   <meta charset="utf-8">
   <style type="text/css">
     body {
-      margin: 0;
-      padding: 0;
       color: #FFF;
       background-color: #000;
     }
@@ -29,69 +27,68 @@
       text-align: center;
     }
     img {
+      /* 画像をブロック要素にして中央揃えにしないとボタンが右に回り込んでしまうので仕様以外のcssを追加して調整 */
       display: block;
       margin: 0 auto;
       margin-bottom: 5px;
       border: solid 5px #FFF;
     }
-    button {
-      margin: 3px;
-    }
+
   </style>
   <script type="text/javascript">
-  const X_SCROLL_AMONT = { // x軸のスクロール量
-    'leftDirection' : 400, // 左方向
-    'rightDirection' : -400 // 右方向
-  };
-  const Y_SCROLL_AMONT = 0; // y軸のスクロール量
-  const INTERVAL_TIME = 1; // インターバル
-  const SCROLL_UNIT = { // スクロール単位
-    'leftDirection' : 1, // 左方向
-    'rightDirection' : -1 // 右方向
-  };
-  var scrollUnit; // スクロール単位
-  var roopCount = 0; // ループ回数
-  
-  // クリック時、右方向にスクロール
-  function windowScrollRight() {
-    // 一定間隔で処理を繰り返す関数を定義
-    var scrollFunction = setInterval(function() {
-      // ループ回数を加算
-      roopCount++;
-      // 画面をx軸方向に1スクロール
-      window.scrollBy(SCROLL_UNIT.leftDirection, Y_SCROLL_AMONT);
-      console.log(roopCount);
-      // windowのスクロール量とループ回数が一致した場合
-      if (X_SCROLL_AMONT.leftDirection === roopCount) {
-        // setIntervalの処理を停止
-        clearInterval(scrollFunction);
-        // ループ回数を初期化
-        roopCount = 0;
-      }
-    // 指定した間隔で処理を繰り返す
-    } , INTERVAL_TIME);
-  }
+    const X_SCROLL_AMONT = { // x軸のスクロール量
+      'leftDirection' : -400, // 左方向
+      'rightDirection' : 400 // 右方向
+    };
+    const Y_SCROLL_AMONT = 0; // y軸のスクロール量
+    const INTERVAL_TIME = 1; // インターバル
+    const SCROLL_UNIT = { // スクロール単位
+      'leftDirection' : -1, // 左方向
+      'rightDirection' : 1 // 右方向
+    };
+    var scrollUnit; // スクロール単位
+    var ROOP_COUNT = { // ループ回数
+      'leftDirection' : 0, // 左方向
+      'rightDirection' : 0 // 右方向
+    }
 
-  // クリック時、左方向にスクロール
-  function windowScrollLeft() {
-    // 一定間隔で処理を繰り返す関数を定義
-    var scrollFunction = setInterval(function() {
-      // ループ回数を減算
-      roopCount--;
-      // 画面をx軸方向に1スクロール
-      window.scrollBy(SCROLL_UNIT.rightDirection, Y_SCROLL_AMONT);
-      console.log(roopCount);
-      // windowのスクロール量とループ回数が一致した場合
-      if (roopCount === X_SCROLL_AMONT.rightDirection) {
-        // setIntervalの処理を停止
-        clearInterval(scrollFunction);
-        // ループ回数を初期化
-        roopCount = 0;
-      }
-    // 指定した間隔で処理を繰り返す
-    } , INTERVAL_TIME);
-  }
+    // クリック時、左方向にスクロール
+    function windowScrollLeft() {
+      // 一定間隔で処理を繰り返す関数を定義
+      var scrollFunction = setInterval(function() {
+        // ループ回数を減算
+        ROOP_COUNT.leftDirection--;
+        // 画面をx軸方向に-1スクロール
+        window.scrollBy(SCROLL_UNIT.leftDirection, Y_SCROLL_AMONT);
+        // ループ回数がwindowのスクロール量の数値を超えた場合
+        if (ROOP_COUNT.leftDirection <= X_SCROLL_AMONT.leftDirection) {
+          // setIntervalの処理を停止
+          clearInterval(scrollFunction);
+          // ループ回数を初期化
+          ROOP_COUNT.leftDirection = 0;
+        }
+      // 指定した間隔で処理を繰り返す
+      } , INTERVAL_TIME);
+    }
 
+    // クリック時、右方向にスクロール
+    function windowScrollRight() {
+      // 一定間隔で処理を繰り返す関数を定義
+      var scrollFunction = setInterval(function() {
+        // ループ回数を加算
+        ROOP_COUNT.rightDirection++;
+        // 画面をx軸方向に1スクロール
+        window.scrollBy(SCROLL_UNIT.rightDirection, Y_SCROLL_AMONT);
+        // ループ回数がwindowのスクロール量の数値を超えた場合
+        if (X_SCROLL_AMONT.rightDirection <= ROOP_COUNT.rightDirection) {
+          // setIntervalの処理を停止
+          clearInterval(scrollFunction);
+          // ループ回数を初期化
+          ROOP_COUNT.rightDirection = 0;
+        }
+      // 指定した間隔で処理を繰り返す
+      } , INTERVAL_TIME);
+    }
   </script>
 </head>
 <body>
@@ -118,6 +115,5 @@
       </td>
     </tr>
   </table>
-
 </body>
 </html>
