@@ -1,0 +1,80 @@
+<!--
+演習(1) 「Sample20_2.html」を参考にステップ19の演習(1)で作成したHPに画像の表示サイズを変更するボタンを追加してみましょう。
+  仕様1：各ボタンをクリックした時、画像の横幅を以下のように変更します。
+   サイズ 小：120px
+   サイズ 中：180px
+   サイズ 大：240px
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP19 演習問題</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body {
+      color: #FFFFFF;
+      background: #000000;
+    }
+
+    td {
+      padding: 10px;
+    }
+  </style>
+  <script type="text/javascript">
+    // 画面表示画像パス一覧
+    const IMG_PATH = {
+      // カラー画像
+      'COLOR_IMG' : {
+        'WOOD_ONE'       : 'img/nature01.jpg', // 森の画像1枚目
+        'WOOD_TWO'       : 'img/nature02.jpg', // 森の画像2枚目
+        'WOOD_THREE'     : 'img/nature03.jpg', // 森の画像3枚目
+        'MOUNTAIN_ONE'   : 'img/nature04.jpg', // 山の画像1枚目
+        'MOUNTAIN_TWO'   : 'img/nature05.jpg', // 山の画像2枚目
+        'MOUNTAIN_THREE' : 'img/nature06.jpg'  // 山の画像3枚目
+      },
+      // モノクロ画像
+      'MONOCHROME_IMG' : {
+        'WOOD_ONE'       : 'img/m_nature01.jpg', // 森の画像1枚目
+        'WOOD_TWO'       : 'img/m_nature02.jpg', // 森の画像2枚目
+        'WOOD_THREE'     : 'img/m_nature03.jpg', // 森の画像3枚目
+        'MOUNTAIN_ONE'   : 'img/m_nature04.jpg', // 山の画像1枚目
+        'MOUNTAIN_TWO'   : 'img/m_nature05.jpg', // 山の画像2枚目
+        'MOUNTAIN_THREE' : 'img/m_nature06.jpg'  // 山の画像3枚目
+      }
+    };
+
+    // 引数の値に応じて画像をリサイズする
+    function imgResize(resizeValue) {
+      // HTML上に表示している画像の数だけループ処理
+      for(var roopCount = 0; roopCount <= document.images.length; roopCount++) {
+        // 全て画像の横幅を引数値に変更
+        document.images[roopCount].width = resizeValue;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>日本の風景写真</h1>
+  <p>※画像上へマウスを移動すると、その画像をカラーで表示できます。</p>
+  <p>※以下のボタンで画像の表示サイズを変更できます。</p>
+  <!-- クリック時、引数に指定している値で画像をリサイズする -->
+  <button onclick="imgResize(120)">サイズ 小</button>
+  <button onclick="imgResize(180)">サイズ 中</button>
+  <button onclick="imgResize(240)">サイズ 大</button>
+  <table>
+    <tr>
+      <!-- 森の画像をマウスオーバー時にカラー、マウスを画像の上から離した時にモノクロに切り替える -->
+      <td><img src="img/m_nature01.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['WOOD_ONE']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['WOOD_ONE']"></td>
+      <td><img src="img/m_nature02.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['WOOD_TWO']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['WOOD_TWO']"></td>
+      <td><img src="img/m_nature03.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['WOOD_THREE']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['WOOD_THREE']"></td>
+    </tr>
+
+    <tr>
+      <!-- 山の画像をマウスオーバー時にカラー、マウスを画像の上から離した時にモノクロに切り替える -->
+      <td><img src="img/m_nature04.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['MOUNTAIN_ONE']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['MOUNTAIN_ONE']"></td>
+      <td><img src="img/m_nature05.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['MOUNTAIN_TWO']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['MOUNTAIN_TWO']"></td>
+      <td><img src="img/m_nature06.jpg" onmouseover="this.src=IMG_PATH['COLOR_IMG']['MOUNTAIN_THREE']" onmouseout="this.src=IMG_PATH['MONOCHROME_IMG']['MOUNTAIN_THREE']"></td>
+    </tr>
+  </table>
+</body>
+</html>
