@@ -1,0 +1,60 @@
+<!--
+演習(2) カラーチャート上にクリックした時に、その色の16進数表記をalert()で表示するように演習(1)を改良してみましょう。
+※変数「tdc」を用意し、onclickイベントとして指定するJavaScriptを代入します。
+※document.writeにより出力されるTDタグにonclickイベントを追加します。
+※onclickイベントの値は変数「tdc」で指定します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>背景色の操作</title>
+  <meta charset="utf-8">
+  <style>
+    table {
+      background-color : #FFF;
+    }
+    td {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+  <script type="text/javascript">
+  </script>
+</head>
+<body>
+  <h1>背景色の変更</h1>
+  <p>カラーチャート上にマウスを移動させると、HPの背景色を変更できます。</p>
+  <table border="1">
+    <script type="text/javascript">
+      var rgbCodeNumbers = new Array('00', '33', '66', '99', 'CC', 'FF'); // 基準となるカラーコード
+      var rgbCode; // RGB番号
+      var cellColor; // セルの背景色
+      var changeColor; // 変更背景色
+      var alertColorCode; // 変更背景色
+
+      // 基準のカラーコードの総数だけループ処理(RGBコードのR色生成用ループ)
+      for (var CountCodeNumberR = 0; CountCodeNumberR <= 5; CountCodeNumberR++) {
+        document.write('<tr>');
+        // 基準のカラーコードの総数だけループ処理(RGBコードのG色生成用ループ)
+        for (var CountCodeNumberG = 0; CountCodeNumberG <= 5; CountCodeNumberG++) {
+          // 基準のカラーコードの総数だけループ処理(RGBコードのB色生成用ループ)
+          for (var CountCodeNumberB = 0; CountCodeNumberB <= 5; CountCodeNumberB++) {
+            // 基準のカラーコードを三重ループで組み合わせてRGBカラーコードを生成
+            rgbCode = '#' + rgbCodeNumbers[CountCodeNumberR] + rgbCodeNumbers[CountCodeNumberG] + rgbCodeNumbers[CountCodeNumberB];
+            // 16進数表記のカラーコードを代入
+            // ※変数rgbCodeも16進数表記のカラーコードを代入しているが、仕様によりアラートで出すカラーコードの変数は別で定義
+            alertColorCode = rgbCode;
+            // tdタグに指定する生成したRGBカラーコード
+            cellColor = 'background-color:' + rgbCode + ';';
+            // 表以外の箇所に指定する生成したRGBカラーコードを変数に代入
+            changeColor = "document.bgColor='" + rgbCode + "';";
+            // tdタグのstyle属性とonmouseoverイベントに生成したRGBカラーコードを指定し画面に出力
+            document.write(`<td style="${cellColor}" onclick="alert('${alertColorCode}');" onmouseover="${changeColor}"></td>`);
+          }
+        }
+        document.write('</tr>');
+      }
+    </script>
+  </table>
+</body>
+</html>
