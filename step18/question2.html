@@ -49,7 +49,7 @@
             // 表以外の箇所に指定する生成したRGBカラーコードを変数に代入
             changeColor = "document.bgColor='" + rgbCode + "';";
             // tdタグのstyle属性とonmouseoverイベントに生成したRGBカラーコードを指定し画面に出力
-            document.write(`<td style="${cellColor}" onclick="alert('${rgbCode}');" onmouseover="${changeColor}"></td>`);
+            document.write(`<td style="${cellColor}" onclick="alert('${alertColorCode}');" onmouseover="${changeColor}"></td>`);
           }
         }
         document.write('</tr>');
