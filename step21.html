@@ -16,28 +16,39 @@
     var nowTime = new Date(); // Dateオブジェクト生成
     var nowHour = nowTime.getHours(); // 現在時刻:時
     var nowMinutes = nowTime.getMinutes(); // 現在時刻:分
+    
+    // 画面で使用する色一覧
+    const COLOR_CHART = {
+      'ORANGE' : '#FFCC66', // 橙
+      'GRAY'   : '#666666', // 灰
+      'WHITE'  : '#FFFFFF', // 白
+      'BLACK'  : '#000000', // 黒
+      'BLUE'   : '#0000CC', // 青
+      'YELLOW' : '#FFFF33'  // 黄
+    };
+
     // 画面表示変更パターン一覧
     const CHANGE_DISPLAY_PATTERN = {
       // パターン：朝 - 夕方
       'MORNING_TIME' : {
         'START_TIME' : 7,  // 変更時間帯：開始
         'END_TIME'   : 17, // 変更時間帯：終了
-        'BACKGROUND_COLOR' : '#FFCC66', // 変更背景色
-        'FONT_COLOR'       : '#666666'  // 変更文字色
+        'BACKGROUND_COLOR' : COLOR_CHART['ORANGE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['GRAY'] // 変更文字色
       },
       // パターン：夕方 - 夜
       'EVENING_TIME' : {
         'START_TIME' : 17, // 変更時間帯：開始
         'END_TIME'   : 20, // 変更時間帯：終了
-        'BACKGROUND_COLOR' : '#FFFFFF', // 変更背景色
-        'FONT_COLOR'       : '#000000'  // 変更文字色
+        'BACKGROUND_COLOR' : COLOR_CHART['WHITE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['BLACK']  // 変更文字色
       },
       // パターン：夜 - 朝
       'NIGHT_TIME' : {
         'START_TIME' : 20, // 変更時間帯：開始
         'END_TIME'   : 7,  // 変更時間帯：終了
-        'BACKGROUND_COLOR' : '#0000CC', // 変更背景色
-        'FONT_COLOR'       : '#FFFF33'  // 変更文字色
+        'BACKGROUND_COLOR' : COLOR_CHART['BLUE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['YELLOW'] // 変更文字色
       }
     };
   </script>
