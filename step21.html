@@ -1,0 +1,82 @@
+<!--
+演習(1) 自動的に「ただいま○時○分です。」と表示し、現在の時刻に応じて背景色と文字色が以下のように変化するHPを作成してみましょう。
+【夜8:00 ~ 朝6:59】
+【朝7:00 ~ 夕4:59】
+【夕5:00 ~ 夜7:59】
+  仕様1：変数名「now」でDateオブジェクトを作成し、変数「hh」に時、変数「mm」に分の数値を取り出します。
+  仕様2：背景色と文字色は、変数「hh」の値で条件分岐させて指定します。
+  仕様3：パソコンの時刻設定を変更すると、背景色の変化をその場で確認できます。なお、確認後はパソコンの時計を現在に戻しておくのを忘れないようにしてください。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP21 演習問題</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+    var nowTime = new Date(); // Dateオブジェクト生成
+    var nowHour = nowTime.getHours(); // 現在時刻:時
+    var nowMinutes = nowTime.getMinutes(); // 現在時刻:分
+    
+    // 画面で使用する色一覧
+    const COLOR_CHART = {
+      'ORANGE' : '#FFCC66', // 橙
+      'GRAY'   : '#666666', // 灰
+      'WHITE'  : '#FFFFFF', // 白
+      'BLACK'  : '#000000', // 黒
+      'BLUE'   : '#0000CC', // 青
+      'YELLOW' : '#FFFF33'  // 黄
+    };
+
+    // 画面表示変更パターン一覧
+    const CHANGE_DISPLAY_PATTERN = {
+      // パターン：朝 - 夕方
+      'MORNING_TIME' : {
+        'START_TIME' : 7,  // 変更時間帯：開始
+        'END_TIME'   : 17, // 変更時間帯：終了
+        'BACKGROUND_COLOR' : COLOR_CHART['ORANGE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['GRAY'] // 変更文字色
+      },
+      // パターン：夕方 - 夜
+      'EVENING_TIME' : {
+        'START_TIME' : 17, // 変更時間帯：開始
+        'END_TIME'   : 20, // 変更時間帯：終了
+        'BACKGROUND_COLOR' : COLOR_CHART['WHITE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['BLACK']  // 変更文字色
+      },
+      // パターン：夜 - 朝
+      'NIGHT_TIME' : {
+        'START_TIME' : 20, // 変更時間帯：開始
+        'END_TIME'   : 7,  // 変更時間帯：終了
+        'BACKGROUND_COLOR' : COLOR_CHART['BLUE'], // 変更背景色
+        'FONT_COLOR'       : COLOR_CHART['YELLOW'] // 変更文字色
+      }
+    };
+  </script>
+</head>
+<body>
+  <h1>ようこそホームページへ！</h1>
+  <p>※このホームページは、時刻に応じて背景色と文字色が変化します。</p>
+  <p>
+    <script type="text/javascript">
+      // 現在時刻が朝7:00 ~ 夕4:59までの場合
+      if (CHANGE_DISPLAY_PATTERN.MORNING_TIME.START_TIME <= nowHour && nowHour < CHANGE_DISPLAY_PATTERN.MORNING_TIME.END_TIME) {
+        // 背景・文字色を変更
+        document.bgColor = CHANGE_DISPLAY_PATTERN.MORNING_TIME.BACKGROUND_COLOR;
+        document.fgColor = CHANGE_DISPLAY_PATTERN.MORNING_TIME.FONT_COLOR;
+      // 現在時刻が夕5:00 ~ 夜7:59までの場合
+      } else if (CHANGE_DISPLAY_PATTERN.EVENING_TIME.START_TIME <= nowHour && nowHour < CHANGE_DISPLAY_PATTERN.EVENING_TIME.END_TIME) {
+        // 背景・文字色を変更
+        document.bgColor = CHANGE_DISPLAY_PATTERN.EVENING_TIME.BACKGROUND_COLOR;
+        document.fgColor = CHANGE_DISPLAY_PATTERN.EVENING_TIME.FONT_COLOR;
+      // それ以外（夕5:00 ~ 夜7:59）の場合
+      } else {
+        // 背景・文字色を変更
+        document.bgColor = CHANGE_DISPLAY_PATTERN.NIGHT_TIME.BACKGROUND_COLOR;
+        document.fgColor = CHANGE_DISPLAY_PATTERN.NIGHT_TIME.FONT_COLOR;
+      }
+      // 現在時刻を画面出力
+      document.write(`<p>ただいま${nowHour}時${nowMinutes}分です。</p>`);
+    </script>
+  </p>
+</body>
+</html>
