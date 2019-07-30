@@ -1,0 +1,79 @@
+<!--
+演習(1) 以下のようなクイズのHPを作成してみましょう。
+チェックボックスをチェックした場合
+  「apple」「Apple」「APPLE」と答えた場合：「正解です！」と表示
+  他の答えの場合：「間違いです！」と表示
+チェックボックスをチェックしなかった場合
+  「りんご」「リンゴ」「林檎」と答えた場合：「正解です！」と表示
+  他の答えの場合：「間違いです！」と表示
+仕様1：ボタンをクリックすると、関数「check()」を呼び出します。
+仕様2：関数「check()」ではチェックの有無を変数「eigo」で代入します。また、入力された答えを変数「kotae」に代入します。
+仕様3：変数「eigo」についてswitch文で条件分岐を行い、さらにif文で変数「kotae」を確認して「正解です！」または「間違いです！」と表示します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP23 演習問題</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+    // 回答の結果をアラートで表示
+    function getAnswer() {
+      // 問題の結果返答文
+      const REPLY_WORDING = {
+        'CORRECT_ANSWER'   : '正解です！',  // 正解文
+        'INCORRECT_ANSWER' : '間違いです！' // 不正解文
+      };
+      // 答え一覧
+      const CORRENT_WORDS = {
+        'ENGLISH_WORDS'  : ['apple', 'Apple', 'APPLE'], // 英語の答え
+        'JAPANESE_WORDS' : ['りんご', 'リンゴ', '林檎']   // 日本語の答え
+      };
+
+      // 英語表記の回答か判定するチェックボックスの結果を代入
+      // チェック:英語 未チェック：英語以外（日本語）
+      var isEnglish   = document.saying_question.is_english.checked;
+      var inputAnswer = document.saying_question.input_answer.value; // 入力した回答
+
+      // 英語表記の回答か判定するチェックボックスの結果を判定
+      switch(isEnglish) {
+        // 英語表記の場合
+        case true :
+          // 英語の答え一覧に入力した回答がある場合
+          if (CORRENT_WORDS['ENGLISH_WORDS'].indexOf(inputAnswer) !== -1) {
+            // 正解の返答をアラートで表示
+            alert(REPLY_WORDING['CORRECT_ANSWER']);
+          // 英語の答え一覧に入力した回答がない場合
+          } else {
+            // 不正解の返答をアラートで表示
+            alert(REPLY_WORDING['INCORRECT_ANSWER']);
+          }
+          break;
+        // 日本語表記の場合
+        case false :
+          // 日本語の答え一覧に入力した回答がある場合
+          if (CORRENT_WORDS['JAPANESE_WORDS'].indexOf(inputAnswer) !== -1) {
+            // 正解の返答をアラートで表示
+            alert(REPLY_WORDING['CORRECT_ANSWER']);
+          // 日本語の答え一覧に入力した回答がない場合
+          } else {
+            // 不正解の返答をアラートで表示
+            alert(REPLY_WORDING['INCORRECT_ANSWER']);
+          }
+          break;
+        default:
+          // 不正解の返答をアラートで表示
+          alert(REPLY_WORDING['INCORRECT_ANSWER']);
+          break;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>（問題）</h1>
+  <p>英語のことわざで「1日1個食べると医者いらず」と言われている果物は何でしょう?</p>
+  <form name="saying_question">
+    <input type="checkbox" name="is_english">英単語（半角文字）で答える<br>
+    <p>答え：<input type="text" name="input_answer"><input type="submit" onclick="getAnswer()" value="答えをチェック" style="margin-left: 10px;"></p>
+  </form>
+</body>
+</html>
