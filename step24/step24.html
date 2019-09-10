@@ -1,0 +1,74 @@
+<!-- 
+演習(1) 「Sample24_2.html」を参考に、セレクトボックスで表示する写真を変更できるHPを作成してみましょう。
+  仕様1：この演習で使用する画像 「meiji01.jpg」〜「meiji04.jpg」
+  仕様2：以下のようにCSSを指定します。
+    BODY{color:#FFFFFF; background-color:#000000;}
+    TD{vertical-align:top;} padding-right:10px;}
+    IMG{border:solid 10px #FFCC66;}
+  仕様3：1行2列のTABLEを作成し、左側のセルに写真、右側のセルにフォームを配置します。
+  仕様4：IMGタグには"BigPhoto"という名前を指定しておきます。また、最初は「meiji01.jpg」を表示しておきます。
+  仕様5：SELECTタグにonchangeイベントを追加し、選択項目が変更された際に関数「photoChange()」を呼び出します。
+  仕様6：表示する写真のファイル名は、OPTIONタグのvalue属性で指定しておきます。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP24 演習問題</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    body {
+      color: #FFFFFF;
+      background-color: #000000;
+    }
+    td {
+      vertical-align: top;
+      padding-right: 10px;
+    }
+    form {
+      margin: 0 auto;
+      padding-left: 20px;
+      vertical-align: top;
+      display: inline-block;
+    }
+    img {
+      margin: 0 auto;
+      display: inline-block;
+      border: solid 10px #FFCC66;
+    }
+  </style>
+  <script type="text/javascript">
+    // 切り替え画像一覧
+    const CHOOSE_PHOTO = {
+      'PHOTO_NAME' : ['写真の選択', '聖ザビエル天主堂（外壁）', '三重県庁舎', '聖ミハネ教会堂', '聖ザビエル天主堂（内部）'], // 写真名
+      'FILE_NAME'  : ['', 'meiji01.jpg', 'meiji02.jpg', 'meiji03.jpg', 'meiji04.jpg'] // ファイル名
+    };
+
+    // 選択した画像に表示を切り替える
+    function changePhoto() {
+      // 選択した画像を識別する添え字を取得
+      var changeChoiceIndex = document.SwitchingPhotoForm.photoList.selectedIndex;
+      // ファイル名が存在する場合
+      if (CHOOSE_PHOTO['FILE_NAME'][changeChoiceIndex] !== '') {
+        // 画面に表示している画像を選択した画像に切り替える
+        document.BigPhoto.src = 'img/' + CHOOSE_PHOTO['FILE_NAME'][changeChoiceIndex];
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>明治村の写真</h1>
+  <img name="BigPhoto" src="img/meiji01.jpg">
+  <form name="SwitchingPhotoForm">
+    <p>写真の選択</p>
+    <select name="photoList" onchange="changePhoto()">
+    <script type="text/javascript">
+      // 切り替え画像の数だけループ処理
+      for (var photoIndex = 0; photoIndex < CHOOSE_PHOTO.FILE_NAME.length; photoIndex++) {
+        // valueに画像パス、テキストには写真名を指定し出力
+        document.write('<option value="' + CHOOSE_PHOTO['FILE_NAME'][photoIndex] + '">' + CHOOSE_PHOTO['PHOTO_NAME'][photoIndex] + '</option>');
+      }
+      </script>
+    </select>
+  </form>
+</body>
+</html>
