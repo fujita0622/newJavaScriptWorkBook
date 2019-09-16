@@ -1,0 +1,70 @@
+<!--
+演習(1) 以下のようなセレクトボックスを作成し、項目を選択すると、そのページを移動するHPを作成してみましょう。
+仕様1：各項目のリンク先URLは、以下のとおりです。
+  ・東京国立近代美術館 http://www.momat.go.jp/
+  ・京都国立近代美術館 http://www.momak.go.jp/
+  ・国立西洋美術館 http://www.nmwa.go.jp/
+  ・国立国際美術館 http://www.momat.go.jp/
+  ・国立新美術館 http://www.nact.jp/
+  ・東京国立博物館 http://www.tnm.jp/
+  ・京都国立博物館 http://www.kyohaku.go.jp/
+  ・奈良国立博物館 http://www.narahaku.go.jp/
+  ・九州国立博物館 http://www.kyuhaku.jp/
+
+仕様2：SELECTタグにonchangeイベントを追加し、選択項目が変更された際に関数「goLink()」を呼び出します。
+仕様3：リンク先のURLは、各OPTIONタグのvalue属性を指定します。
+仕様4：関数「goLink()」では、変数「n」に選択項目の添字を代入し、location.hrefの値を変更されることでリンク機能を実現します。
+ただし、「n」が0,1,7の場合はページの移動を行いません。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP25 演習問題</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+    // 選択項目一覧
+    const SELECT_ITEMS = [
+      // 美術館名, URL
+      {'MUSEUM_NAME' : '移動先を選択', 'MUSEUM_URL' : ''},
+      {'MUSEUM_NAME' : '◆国立美術館======', 'MUSEUM_URL' : ''},
+      {'MUSEUM_NAME' : '東京国立近代美術館', 'MUSEUM_URL' : 'http://www.momat.go.jp/'},
+      {'MUSEUM_NAME' : '京都国立近代美術館', 'MUSEUM_URL' : 'http://www.momak.go.jp/'},
+      {'MUSEUM_NAME' : '国立西洋美術館', 'MUSEUM_URL' : 'http://www.nmwa.go.jp/'},
+      {'MUSEUM_NAME' : '国立国際美術館', 'MUSEUM_URL' : 'http://www.momat.go.jp/'},
+      {'MUSEUM_NAME' : '国立新美術館','MUSEUM_URL' : 'http://www.nact.jp/'},
+      {'MUSEUM_NAME' : '◆国立博物館======','MUSEUM_URL' : ''},
+      {'MUSEUM_NAME' : '東京国立博物館','MUSEUM_URL' : 'http://www.tnm.jp/'},
+      {'MUSEUM_NAME' : '京都国立博物館', 'MUSEUM_URL' : 'http://www.kyohaku.go.jp/'},
+      {'MUSEUM_NAME' : '奈良国立博物館', 'MUSEUM_URL' : 'http://www.narahaku.go.jp/'},
+      {'MUSEUM_NAME' : '九州国立博物館','MUSEUM_URL' : 'http://www.kyuhaku.jp/'}
+    ];
+    
+    // 選択した項目にページ遷移する
+    function goLink() {
+      // 選択している項目の添字を取得
+      var selectedIndex = document.museumLinks.museumList.selectedIndex;
+      // 取得した添字で選択した美術館のURLを代入
+      var museumUrl = SELECT_ITEMS[selectedIndex]['MUSEUM_URL'];
+      // 美術館のURLがある場合
+      if (museumUrl !== '') {
+        // ページ遷移
+        location.href = museumUrl;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>美術館&博物館のリンク集</h1>
+  <form name="museumLinks">
+    <select name="museumList" onchange="goLink()">
+      <script type="text/javascript">
+        // 選択項目の数だけループ処理
+        for(var optionIndex = 0; optionIndex < SELECT_ITEMS.length; optionIndex++) {
+          // value属性にURL,表示するテキストに美術館名を指定し出力
+          document.write('<option value="' + SELECT_ITEMS[optionIndex]['MUSEUM_URL'] + '">' + SELECT_ITEMS[optionIndex]['MUSEUM_NAME'] + '</option>');
+        }
+      </script>
+    </select>
+  </form>
+</body>
+</html>
