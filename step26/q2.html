@@ -1,0 +1,63 @@
+<!-- 
+演習(2) Math.random()を使用し、2つのサイコロ画像をランダムに表示するHPを作成してみましょう。
+仕様1：最初は「1」と「6」のサイコロ画像を表示しておきます。
+仕様2：ボタンをクリックすると、関数「saikoro()」を呼び出します。
+仕様3：関数「saikoro」ではMath.random()を利用し、変数「a」「b」それぞれに1-6の乱数（整数）を発生させます。
+また、変数「a」「b」を利用して表示する二つの画像ファイルを変更します。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP26-2 演習問題</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+
+  </style>
+  <script type="text/javascript">
+    // 表示画像名一覧
+    const SAIKORO_IMG_FILE_NAME = ['sai_1.gif', 'sai_2.gif', 'sai_3.gif', 'sai_4.gif', 'sai_5.gif', 'sai_6.gif'];
+    const IMG_PATH = 'img/'; // 画像の格納場所のパス
+    var ramdomLimitNum = (SAIKORO_IMG_FILE_NAME.length); // 乱数の最大値
+    
+    function saikoro() {
+        var leftImgId  = 'leftImg';  // 画像(左)のid名
+        var rightImgId = 'rightImg'; // 画像(右)のid名
+
+        // 表示画像名一覧を添字を乱数で取得
+        var leftImgIndex  = getRandomNum(ramdomLimitNum); // 左画像の添字
+        var rightImgIndex = getRandomNum(ramdomLimitNum); // 右画像の添字
+        
+        // ファイル名取得
+        var leftImgFileName   = SAIKORO_IMG_FILE_NAME[leftImgIndex];  // 左画像のファイル名
+        var rightImgFileName  = SAIKORO_IMG_FILE_NAME[rightImgIndex]; // 右画像のファイル名
+
+        // 画像を変更
+        document.getElementById(leftImgId).src  = IMG_PATH + leftImgFileName;  // 左画像
+        document.getElementById(rightImgId).src = IMG_PATH + rightImgFileName; // 右画像
+    }
+
+    /*
+    * 乱数を生成し、生成した値を取得する
+    * @param ramdomLimitNum 乱数の最大値
+    * @param 乱数で生成した値（整数）
+    */
+    function getRandomNum(ramdomLimitNum) {
+      // 乱数の最大値をかけて範囲を指定し、乱数を生成
+      var randomNum = Math.random() * ramdomLimitNum;
+      // 生成した値の小数点以下を切り捨て
+      randomNum = Math.floor(randomNum);
+      // 整数の値を返す
+      return randomNum;
+    }
+  </script>
+</head>
+<body>
+  <h1>2つのサイコロ</h1>
+  <p>ボタンをクリックすると、2つのサイコロを振ることができます。</p>
+  <div>
+    <img id="leftImg"  src="img/sai_1.gif">
+    <img id="rightImg" src="img/sai_6.gif">
+  </div>
+  <button onclick="saikoro()">サイコロを振る</button>
+</body>
+</html>

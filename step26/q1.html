@@ -1,0 +1,52 @@
+<!--
+演習(1) 4.56, -4.56の2つの数値について、Math.floor()、Math.ceil()、Math.round()を実行すると、どのような値が返されるかを確認してみましょう。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STEP26-1 演習問題</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    table {
+      border: 3px solid #000;
+    }
+    th,td {
+      padding: 5px;
+      border: 1px solid #000;
+    }
+    th {
+      background-color: #7fffd4;
+    }
+    td {
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>切り捨て、切り上げ、四捨五入</h1>
+  <table>
+    <tr>
+      <th>数値</th>
+      <th>Math.floor()</th>
+      <th>Math.ceil()</th>
+      <th>Math.round()</th>
+    </tr>
+    <script type="text/javascript">
+      // 計算に使用する値一覧
+      const CALCULATE_VALS = [4.56, -4.56];
+      // 計算に使用する値の数だけループ処理
+      for(var vals_index = 0; vals_index < CALCULATE_VALS.length; vals_index++) {
+        document.write('<tr>');
+        document.write('<th>' + CALCULATE_VALS[vals_index] + '</th>');
+        // 値を切り捨てて出力
+        document.write('<td>' + Math.floor(CALCULATE_VALS[vals_index]) + '</td>');
+        // 値を切り上げて出力
+        document.write('<td>' + Math.ceil(CALCULATE_VALS[vals_index]) + '</td>');
+        // 値を四捨五入出力
+        document.write('<td>' + Math.round(CALCULATE_VALS[vals_index]) + '</td>');
+        document.write('</tr>');
+      }
+    </script>
+  </table>
+</body>
+</html>
